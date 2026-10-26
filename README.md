@@ -17,15 +17,28 @@ pip install mat-uitest
 mat skill install        # 装进当前 AI 助手的 skill 目录;mat skill path 可查看位置
 ```
 
-### 方式二:直接拷贝本目录
+`mat skill install` 装的是**你装的那个 mat-uitest 版本里自带的那份 skill**,所以先确认版本:
+
+```bash
+mat --version            # 低于下表版本时,包内 skill 也是旧的
+```
+
+WorkBuddy 用 `mat skill install --target workbuddy`(默认落点是 Claude Code 的 `~/.claude/skills/`),
+其他助手用 `--dir <你的 skills 目录>`;已存在且内容不同时默认不覆盖,要覆盖加 `--force`。
+
+### 方式二:直接拷贝本仓库
 
 把 `mobileapp-testing/` 整个目录复制到你的 agent skills 目录,例如:
 
 | Agent | skills 目录 |
 |---|---|
 | Claude Code | `~/.claude/skills/` |
+| WorkBuddy | `~/.workbuddy/skills/` |
 | ZCode | 会话/插件 skill 目录(或打包为插件) |
-| Trae / CodeBuddy | 用各自 IDE 的「技能上传」入口选 `SKILL.md` 或本仓库的 zip |
+| Trae / CodeBuddy | 用各自 IDE 的「技能上传」入口选 `SKILL.md`,或把 `mobileapp-testing/` 目录打包成 zip 再上传 |
+
+**适用于助手不能执行终端命令的场合。**注意两点:手动拷的副本**不会自动更新**(MAT 升级后要重拷一次);
+本仓与随包版本**以随包为准**(`mat skill path` 打印的目录就是当前 MAT 自带的那份)。
 
 ## 前置条件
 
@@ -40,7 +53,11 @@ mat skill install        # 装进当前 AI 助手的 skill 目录;mat skill path
 |---|---|
 | 本仓库当前 main | ≥ 0.7.1 |
 
-skill 的 Setup 段可让 agent 在**未安装 MAT 的机器上自举**(检测 → uv/pip 安装 → 验证)。
+- `mat --version` **低于上表**时,包内那份 skill 也是旧的(没有 `mat summary`、没有凭据段),
+  这时用**方式二**取本仓版本,或先升级 mat-uitest 再 `mat skill install --force`。
+- 本仓 `mobileapp-testing/` 是**随包版本的镜像**,由主仓的 `scripts/sync_skill_repo.sh` 单向同步;
+  不要在 GitHub 网页上直接改这里的 `SKILL.md`,改了下次同步会被覆盖——改动请提到主仓。
+- skill 的 Setup 段可让 agent 在**未安装 MAT 的机器上自举**(检测 → uv/pip 安装 → 验证)。
 
 ## 许可
 

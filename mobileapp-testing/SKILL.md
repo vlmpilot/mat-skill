@@ -53,7 +53,7 @@ adb version
 it creates `cases/` (with an example case) and `artifacts/`. Every `mat run
 cases/<file>.json` path below assumes this layout.
 
-**Limited**: iOS — **simulator preview only** (`mat run --platform ios`; needs the `[ios]` extra and WDA on localhost:8100). Not available on iOS: real device, `index` / `explore` / `arrival`.
+**iOS (beta)**: simulator (`mat run --platform ios`; needs the `[ios]` extra and WDA on `localhost:8100`) **and USB real device** — run `mat ios-setup` first (Xcode signed-in account, device trusted, one ⌘U build; `--start` also builds and launches WDA). Real-device limits: **USB only**, device must stay **unlocked** with auto-lock set to **Never**, free-provisioning cert expires in **7 days**, no `--record`. **Blocked on iOS** (do not attempt): `index` / `explore` / `arrival` — Android is the full-capability platform.
 **Not supported** (do not attempt): cloud device
 farms, web apps (for web testing see Anthropic's webapp-testing skill).
 
@@ -105,6 +105,8 @@ rename breaks your cases.
                                    # only works when insta_engine is importable by the
                                    # current Python (NOT the case under uv tool / pipx)
    ```
+   `mat summary` ships from mat-uitest **0.7.1**; if `mat --version` is older, it
+   does not exist yet — read `run.json` directly in that case.
    `run.json` carries `run.status`, `run.step_success_rate`,
    `run.failed_categories`, and per-step `status / category / error / warning /
    screenshot / logcat_file`. Every step carries a **rule-based five-way
