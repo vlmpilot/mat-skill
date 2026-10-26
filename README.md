@@ -1,0 +1,47 @@
+# MAT mobileapp-testing skill
+
+让 AI agent(Claude Code / Trae / CodeBuddy / ZCode 等,凡支持 SKILL.md 标准)用自然语言驱动 **MAT** 在真机上做移动 App UI 自动化测试:
+
+- **自然语言 → 用例**:`mat gen` 一句话生成结构化测试用例(带页面图谱防幻觉)
+- **真机执行**:截图级步骤证据、每步五分类失败归因、`run.json` 精简结果(agent 读数据,人看 HTML 报告)
+- **自愈**:App 改版后定位器断裂,`mat heal` 出提案、回写为新文件不覆盖原用例
+- **遍历探索**:真机自动遍历 App 产出页面图谱,顺带发现崩溃/白屏
+- **LLM 归因**:失败步骤四分类(app-bug / ui-change / env-flake / precondition)+ 证据 + 建议
+
+## 安装
+
+### 方式一:随包自举(推荐——skill 随 MAT 版本同步更新)
+
+```bash
+pip install mat-uitest
+mat skill install        # 装进当前 AI 助手的 skill 目录;mat skill path 可查看位置
+```
+
+### 方式二:直接拷贝本目录
+
+把 `mobileapp-testing/` 整个目录复制到你的 agent skills 目录,例如:
+
+| Agent | skills 目录 |
+|---|---|
+| Claude Code | `~/.claude/skills/` |
+| ZCode | 会话/插件 skill 目录(或打包为插件) |
+| Trae / CodeBuddy | 用各自 IDE 的「技能上传」入口选 `SKILL.md` 或本仓库的 zip |
+
+## 前置条件
+
+- **Android 真机**:开启 USB 调试并连接(单设备零配置);`mat doctor` 自检环境
+- **iOS**(可选):Xcode + 模拟器或 USB 真机,`mat ios-setup` 体检
+- **AI 能力**(gen / diagnose 需要):官方代理 token 或自带 OpenAI 兼容 Key;
+  无 Key 时 run / explore / index / heal / devices / summary 全部可用(本地执行与自愈不依赖 AI)
+
+## 版本对应
+
+| skill 内容 | 对应 mat-uitest |
+|---|---|
+| 本仓库当前 main | ≥ 0.7.1 |
+
+skill 的 Setup 段可让 agent 在**未安装 MAT 的机器上自举**(检测 → uv/pip 安装 → 验证)。
+
+## 许可
+
+AGPL-3.0-or-later,随 [MAT 开源核心](https://github.com/vlmpilot/mat)分发;完整许可文本见仓库根 LICENSE。
