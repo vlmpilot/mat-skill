@@ -44,4 +44,4 @@ skill 的 Setup 段可让 agent 在**未安装 MAT 的机器上自举**(检测 �
 
 ## 许可
 
-AGPL-3.0-or-later,随 [MAT 开源核心](https://github.com/vlmpilot/mat)分发;完整许可文本见仓库根 LICENSE。
+AGPL-3.0-or-later,随 [MAT 开源核心](https://github.com/vlmpilot/mat-uitest)分发;完整许可文本见仓库根 LICENSE。
