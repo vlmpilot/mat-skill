@@ -24,7 +24,8 @@ mat --version            # 低于下表版本时,包内 skill 也是旧的
 ```
 
 WorkBuddy 用 `mat skill install --target workbuddy`(默认落点是 Claude Code 的 `~/.claude/skills/`),
-其他助手用 `--dir <你的 skills 目录>`;已存在且内容不同时默认不覆盖,要覆盖加 `--force`。
+其他助手先跑 `mat skill targets` 看已知落点,不确定就 `--target agents`(通用目录,国内多数助手都读它);
+已存在且内容不同时默认不覆盖,要覆盖加 `--force`。
 
 ### 方式二:直接拷贝本仓库
 
@@ -32,13 +33,30 @@ WorkBuddy 用 `mat skill install --target workbuddy`(默认落点是 Claude Code
 
 | Agent | skills 目录 |
 |---|---|
-| Claude Code | `~/.claude/skills/` |
+| Claude Code / CodeBuddy 系 | `~/.claude/skills/` |
 | WorkBuddy | `~/.workbuddy/skills/` |
+| Trae(国内版) | `~/.trae-cn/skills/` |
+| QoderWork CN | `~/.qoderwork/skills/` |
+| 通用(魔搭/npx 生态默认) | `~/.agents/skills/` |
 | ZCode | 会话/插件 skill 目录(或打包为插件) |
-| Trae / CodeBuddy | 用各自 IDE 的「技能上传」入口选 `SKILL.md`,或把 `mobileapp-testing/` 目录打包成 zip 再上传 |
+| 其他 IDE | 用各自 IDE 的「技能上传」入口选 `SKILL.md`,或把 `mobileapp-testing/` 目录打包成 zip 再上传 |
 
 **适用于助手不能执行终端命令的场合。**注意两点:手动拷的副本**不会自动更新**(MAT 升级后要重拷一次);
 本仓与随包版本**以随包为准**(`mat skill path` 打印的目录就是当前 MAT 自带的那份)。
+
+### 方式三:插件市场(一条命令订阅,自动更新)
+
+CodeBuddy / WorkBuddy 这类支持插件市场的助手,可以直接把本仓当市场源订阅:
+
+```
+/plugin marketplace add vlmpilot/mat-skill
+/plugin install mobileapp-testing@mat-skill
+```
+
+之后市场更新时插件跟着更新,不用手动重拷。仓库里两份清单内容相同,只是目录名跟各家的读取约定走:
+`.claude-plugin/`(Claude Code)、`.codebuddy-plugin/`(CodeBuddy / WorkBuddy),
+都由主仓 `scripts/sync_skill_repo.sh` 从模板生成并注入版本号——**不要在网页上直接改这两个 JSON**,
+改了下次同步会被覆盖。
 
 ## 前置条件
 
