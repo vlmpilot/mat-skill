@@ -29,8 +29,11 @@ To test Android apps on a connected device, use the `mat` CLI. Every command is 
 
 ## Setup (agent-executable — run this first; covers not-installed and already-installed)
 
-Version floor: **mat-uitest ≥ 0.7.0**; the `mat summary` digest command used
-throughout this skill needs **≥ 0.7.1** — always install the latest available.
+Version floor: **mat-uitest ≥ 0.7.9** — this skill teaches `mat verify` with batch
+(`--subset`, `--apk`), the MCP tools `mat_doctor` / `mat_cred` / `mat_verify(subset=…)`,
+and `mat cred set --stdin`, all of which exist only in 0.7.9+. If the user is pinned to an
+older version: `mat verify` (single case) needs ≥ 0.7.6, `mat summary` needs ≥ 0.7.1.
+Always install the latest available.
 Human-only prerequisite: an Android device
 with USB debugging enabled (or an emulator) plugged in — everything else below the
 agent can do itself.
