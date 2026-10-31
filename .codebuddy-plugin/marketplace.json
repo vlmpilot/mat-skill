@@ -5,13 +5,13 @@
     "url": "https://mobileaitest.com"
   },
   "description": "MAT 移动端 App UI 自动化测试技能：自然语言生成用例、真机执行取证、改版自愈、遍历探索、失败归因。",
-  "version": "0.7.1",
+  "version": "0.7.9",
   "plugins": [
     {
       "name": "mobileapp-testing",
       "source": "./",
       "description": "用自然语言驱动 MAT 在真机/模拟器上跑移动 App UI 测试：一句话生成用例、带截图证据执行、App 改版后自愈定位、遍历探索生成页面图谱、失败步骤 LLM 归因。",
-      "version": "0.7.1",
+      "version": "0.7.9",
       "license": "AGPL-3.0-or-later",
       "homepage": "https://mobileaitest.com",
       "repository": "https://github.com/vlmpilot/mat-skill",

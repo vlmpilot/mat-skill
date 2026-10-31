@@ -69,9 +69,9 @@ CodeBuddy / WorkBuddy 这类支持插件市场的助手,可以直接把本仓当
 
 | skill 内容 | 对应 mat-uitest |
 |---|---|
-| 本仓库当前 main | ≥ 0.7.1 |
+| 本仓库当前 main | **0.7.9**（与同一版本随包内容逐字一致） |
 
-- `mat --version` **低于上表**时,包内那份 skill 也是旧的(没有 `mat summary`、没有凭据段),
+- `mat --version` **低于上表**时,包内那份 skill 也是旧的(没有 `mat verify` 的批量与装包语义、没有 `mat cred set --stdin`),
   这时用**方式二**取本仓版本,或先升级 mat-uitest 再 `mat skill install --force`。
 - 本仓 `mobileapp-testing/` 是**随包版本的镜像**,由主仓的 `scripts/sync_skill_repo.sh` 单向同步;
   不要在 GitHub 网页上直接改这里的 `SKILL.md`,改了下次同步会被覆盖——改动请提到主仓。
